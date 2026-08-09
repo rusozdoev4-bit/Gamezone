@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameZone — игровая площадка</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#home">GAME<span>ZONE</span></a>
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#games">Игры</a>
+    <a href="#shop">Магазин</a>
+    <a href="#profile">Профиль</a>
+    <a href="#admin">Админ</a>
+  </nav>
+  <button class="cart-btn" onclick="showCart()">🛒 <b id="cartCount">0</b></button>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div>
+    <p class="eyebrow">GAMEZONE / 2026</p>
+    <h1>Твоя игровая<br><span>территория.</span></h1>
+    <p class="hero-text">Игры, новости, цифровые товары и твой игровой профиль — всё в одном месте.</p>
+    <div class="actions">
+      <a class="btn primary" href="#games">Смотреть игры</a>
+      <button class="btn ghost" onclick="openModal('loginModal')">Войти</button>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="orb">🎮</div>
+    <p>GAME OF THE WEEK</p>
+    <h3>Cyber Arena</h3>
+    <span>★★★★★ 4.9</span>
+  </div>
+</section>
+
+<section id="games" class="section">
+  <div class="section-head">
+    <div><p class="eyebrow">КАТАЛОГ</p><h2>Популярные игры</h2></div>
+    <input id="search" class="search" placeholder="🔎 Поиск игры..." oninput="renderGames()">
+  </div>
+  <div id="filters" class="filters">
+    <button class="filter active" onclick="setFilter('all',this)">Все</button>
+    <button class="filter" onclick="setFilter('action',this)">Экшен</button>
+    <button class="filter" onclick="setFilter('online',this)">Онлайн</button>
+    <button class="filter" onclick="setFilter('strategy',this)">Стратегии</button>
+  </div>
+  <div id="gameGrid" class="grid"></div>
+</section>
+
+<section id="shop" class="section dark">
+  <div class="section-head"><div><p class="eyebrow">МАГАЗИН</p><h2>Цифровые товары</h2></div></div>
+  <div class="grid shop-grid" id="shopGrid"></div>
+</section>
+
+<section id="profile" class="section">
+  <div class="profile">
+    <div class="avatar">👾</div>
+    <div>
+      <p class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</p>
+      <h2 id="profileName">Гость</h2>
+      <p>Уровень <b>24</b> · 8 420 XP</p>
+      <div class="progress"><i></i></div>
+    </div>
+    <button class="btn primary" onclick="openModal('loginModal')">Войти / Регистрация</button>
+  </div>
+</section>
+
+<section id="admin" class="section dark">
+  <p class="eyebrow">ADMIN PANEL</p>
+  <h2>Панель управления</h2>
+  <div class="admin-grid">
+    <div class="stat"><b id="usersStat">1 284</b><span>Пользователей</span></div>
+    <div class="stat"><b id="ordersStat">327</b><span>Заказов</span></div>
+    <div class="stat"><b>48</b><span>Игр</span></div>
+    <div class="stat"><b>₸1.8M</b><span>Оборот</span></div>
+  </div>
+  <div class="admin-box">
+    <h3>Добавить игру</h3>
+    <input id="newGameName" placeholder="Название игры">
+    <input id="newGamePrice" type="number" placeholder="Цена, ₸">
+    <button class="btn primary" onclick="addGame()">Добавить</button>
+  </div>
+</section>
+</main>
+
+<footer><b>GAMEZONE</b><span>Игровая платформа · Демо-версия</span></footer>
+
+<div id="toast" class="toast"></div>
+
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal('loginModal')">×</button>
+    <h2>Вход</h2>
+    <input id="loginEmail" type="email" placeholder="Email">
+    <input id="loginPass" type="password" placeholder="Пароль">
+    <button class="btn primary full" onclick="login()">Войти</button>
+    <p class="small">Демо: можно ввести любые данные.</p>
+  </div>
+</div>
+
+<div id="cartModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal('cartModal')">×</button>
+    <h2>Корзина</h2>
+    <div id="cartItems"></div>
+    <div class="total">Итого: <b id="cartTotal">₸0</b></div>
+    <button class="btn primary full" onclick="checkout()">Оформить заказ</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
